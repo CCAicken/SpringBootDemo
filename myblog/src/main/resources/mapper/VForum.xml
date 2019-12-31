@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myblog.dao.VForumDao">
+
+    <resultMap type="com.example.myblog.entity.VForum" id="VForumMap">
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userid" column="userid" jdbcType="INTEGER"/>
+        <result property="mdtext" column="mdtext" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="VARCHAR"/>
+        <result property="forumdescribe" column="forumdescribe" jdbcType="VARCHAR"/>
+        <result property="htmltext" column="htmltext" jdbcType="VARCHAR"/>
+        <result property="forumtypename" column="forumtypename" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="VForumMap">
+        select
+          title, id, userid, mdtext, createtime, forumdescribe, htmltext, forumtypename, username
+        from myblog.v_forum
+        where  id = #{id}
+    </select>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update myblog.v_forum
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="userid != null">
+                userid = #{userid},
+            </if>
+            <if test="mdtext != null and mdtext != ''">
+                mdtext = #{mdtext},
+            </if>
+            <if test="createtime != null and createtime != ''">
+                createtime = #{createtime},
+            </if>
+            <if test="forumdescribe != null and forumdescribe != ''">
+                forumdescribe = #{forumdescribe},
+            </if>
+            <if test="htmltext != null and htmltext != ''">
+                htmltext = #{htmltext},
+            </if>
+            <if test="forumtypename != null and forumtypename != ''">
+                forumtypename = #{forumtypename},
+            </if>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+  
+
+</mapper>
